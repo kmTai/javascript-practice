@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Hoisting</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" href="" /> -->
+    <link href="/static/css/prism.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Hoisting</h1>
+
+    <main>
+      <section>
+        <p>
+          JavaScript engines use the JIT(just in time) compiler to execute the
+          code.<br />
+          Variable and function declaration can be used before it has been
+          initialized,<br />
+          think of it as the copmpiler moves the declaration to the top of the
+          code.
+        </p>
+
+        <pre>
+          <code class="language-js">
+            console.log(dummy);
+            var dummy = 1; //won't throw error, print "undefined"
+          </code>
+        </pre>
+        <p>can think of it as below:</p>
+        <pre>
+          <code class="language-js">
+
+            var dummy;
+            console.log(dummy);
+            dummy = 1;
+          </code>
+        </pre>
+
+        <p>let and const will throw ReferenceError</p>
+        <pre>
+          <code class="language-js">
+            console.log(tommy);//throw ReferenceError
+            let tommy = 2;
+          </code>
+        </pre>
+
+        <p>function declaration vs function expression</p>
+        <pre>
+          <code class="language-js">
+            
+            foo(); //function declaration, it runs
+            try {
+              bar();//function expression, throw TypeError
+            } catch (error) {
+              console.log(error);
+            }
+                
+            function foo() {
+              console.log(1);
+            }
+            
+            var bar = function () {
+              console.log(2);
+            };
+          </code>
+        </pre>
+
+        <p>
+          P.S.<br />avoid hoisting as it may cause confusing<br />
+          use let, const and function expression
+        </p>
+      </section>
+    </main>
+
+    <script src="/static/js/prism.js"></script>
+
+    <script>
+      console.log(dummy);
+      var dummy = 1;
+
+      try {
+        console.log(tommy);
+      } catch (error) {
+        console.log(error);
+      }
+
+      let tommy = 2;
+
+      foo(); //function declaration, it runs
+      try {
+        bar(); //function expression, throw TypeError
+      } catch (error) {
+        console.log(error);
+      }
+
+      function foo() {
+        console.log(1);
+      }
+
+      var bar = function () {
+        console.log(2);
+      };
+    </script>
+  </body>
+</html>

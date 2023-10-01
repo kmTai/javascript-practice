@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Higher-order Function</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" href="" /> -->
+    <link href="/static/css/prism.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Higher-order Function</h1>
+
+    <main>
+      <section>
+        <p>1. can take one or more functions as arguments</p>
+
+        <pre>
+            <code class="language-js">
+                const normalFn = function () {
+                    console.log("@normalFn");
+                };
+                
+                function higherFn(arg) {
+                    console.log("@higherFn");
+                    arg();
+                }
+                
+                //higherFn takes normalFn as an argument
+                higherFn(normalFn);
+            </code>
+        </pre>
+
+        <p>2. can return a functions as arguments</p>
+        <pre>
+            <code class="language-js">
+                function higherFnWithReturn() {
+                    return normalFn;
+                }
+                
+                //return a function 
+                console.log(higherFnWithReturn());
+                //execute the return function with extra()  
+                higherFnWithReturn()();
+            </code>
+        </pre>
+
+        <p>P.S.<br />callback is a form of higher-order function.</p>
+      </section>
+    </main>
+
+    <script src="/static/js/prism.js"></script>
+
+    <script>
+      const normalFn = function () {
+        console.log("@normalFn");
+      };
+
+      function higherFn(arg) {
+        console.log("@higherFn");
+        arg();
+      }
+
+      //passing higherFn take normalFn as an argument
+      higherFn(normalFn);
+
+      function higherFnWithReturn() {
+        return normalFn;
+      }
+
+      //return a function
+      console.log(higherFnWithReturn());
+      //execute the return function with extra()
+      higherFnWithReturn()();
+    </script>
+  </body>
+</html>
