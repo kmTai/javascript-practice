@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Lexical Scope</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" href="" /> -->
+    <link href="/static/css/prism.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Lexical Scope</h1>
+
+    <main>
+      <section>
+        <p>
+          Lexical scope/static scope means the scope refers to where it is
+          defined.
+        </p>
+
+        <pre>
+            <code class="language-js">
+              // Define a variable in the global scope, so lexical scope = global
+              const globalFoo = "foo";
+
+              function chain1() {
+                function chain2() {
+                  //inner scope can asccess the outer scope though the scope chain
+                  //chain2 -> chain1 -> global
+                  return globalFoo;
+                }
+                return chain2();
+              }
+              console.log(chain1());//foo
+            </code>
+        </pre>
+      </section>
+
+      <p>
+        P.S.<br />If same object got defined,<br />
+        the closer scope takes the higher precedence.<br />
+        In other words, the global scope is always the last scope.
+      </p>
+    </main>
+
+    <script src="/static/js/prism.js"></script>
+
+    <script>
+      const globalFoo = "foo";
+
+      function chain1() {
+        function chain2() {
+          //inner scope can asccess the outer scope though the scope chain
+          //chain2 -> chain1 -> global
+          return globalFoo;
+        }
+        return chain2();
+      }
+      console.log(chain1());
+    </script>
+  </body>
+</html>
