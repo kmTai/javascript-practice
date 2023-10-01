@@ -18,7 +18,7 @@
 
     <main>
       <section>
-        <p>1. can take one or more functions as arguments</p>
+        <p>1. Pass functions to functions</p>
 
         <pre>
             <code class="language-js">
@@ -36,7 +36,7 @@
             </code>
         </pre>
 
-        <p>2. can return a functions as arguments</p>
+        <p>2. Return functions from functions</p>
         <pre>
             <code class="language-js">
                 function higherFnWithReturn() {
@@ -50,6 +50,19 @@
             </code>
         </pre>
 
+        <p>3. Create functions within functions</p>
+        <pre>
+            <code class="language-js">
+                function fun1(a) {
+                  function fun2(b) {
+                    return a + b;
+                  }
+                  return fun2;
+                }
+              
+                console.log(fun1(1)(2)); //3
+            </code>
+        </pre>
         <p>P.S.<br />Callback is a form of higher-order function.</p>
       </section>
     </main>
@@ -77,6 +90,15 @@
       console.log(higherFnWithReturn());
       //execute the return function with extra()
       higherFnWithReturn()();
+
+      function fun1(a) {
+        function fun2(b) {
+          return a + b;
+        }
+        return fun2;
+      }
+
+      console.log(fun1(1)(2)); //3
     </script>
   </body>
 </html>
