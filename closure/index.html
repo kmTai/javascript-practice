@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Closure</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" href="" /> -->
+    <link href="/static/css/prism.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Closure</h1>
+
+    <main>
+      <section>
+        <p>
+          Closure is the concept of function + lexical scope. <br />
+          The state(both variable and lexical scope) inside a function will be
+          preserved when it is declared, <br />
+          and being keep alive to observe or make updates to these variables
+          over time.
+        </p>
+
+        <pre>
+            <code class="language-js">
+              const score = () => {
+                let point = 100;//variable in outer scope are considered "private".
+        
+                return () => {
+                  return point++;//scope chain is maintained, 
+                };
+              };
+        
+              //"point" is like a private variable belong to its instance
+              //tommy has his own state of "point".
+              //sally has her own state of "point".
+              const tommy = score(); //point = 100, closure is created and saved to the heap. 
+              const sally = score(); //point = 100, closure is created and saved to the heap. 
+        
+              console.log("tommy:" + tommy());//tommy's point = 100
+        
+              console.log("sally:" + sally());//sally's point = 100
+              console.log("tommy:" + tommy());//tommy's point = 101
+        
+              console.log("tommy:" + tommy());//tommy's point = 102
+              console.log("sally:" + sally());//sally's point = 101
+            </code>
+        </pre>
+
+        <p>
+          P.S.<br />
+          Closure let you associate data (the lexical environment) with a
+          function that operates on that data, and enable data privacy<br />
+          It consumes more memory, because the state is saved in the heap.
+        </p>
+      </section>
+    </main>
+
+    <script src="/static/js/prism.js"></script>
+
+    <script>
+      const score = () => {
+        let point = 100; //Variable in outer scope are considered "private".
+
+        return () => {
+          return point++; //scope chain is maintained,
+        };
+      };
+
+      const tommy = score();
+      const sally = score();
+
+      console.log("tommy:" + tommy());
+
+      console.log("sally:" + sally());
+      console.log("tommy:" + tommy());
+
+      console.log("tommy:" + tommy());
+      console.log("sally:" + sally());
+    </script>
+  </body>
+</html>
